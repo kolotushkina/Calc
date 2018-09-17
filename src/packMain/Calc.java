@@ -242,45 +242,63 @@ public class Calc extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				res2=Integer.valueOf(JT1.getText());
-				switch(operation)
-				{
-				 case "+":
-				 res1 = res1+res2;
-				 break;
-				 case "-":
-				 res1 = res1-res2;
-				 break;
-				 case "*":
-				 res1 = res1*res2;
-				 break;
-				 case "/":	
-					/* 
-					 if(res2==0)
+				
+				methodCalc();
+				
+				 JT1.setText(res1.toString()); 
+			}
+
+			
+		});
+	}
+	
+	public void methodCalc() {
+		
+			
+			switch(operation)
+			{
+			 case "+":
+			 res1 = sum(res1,res2);
+			 break;
+			 case "-":
+			 res1 = min(res1,res2);
+			 break;
+			 case "*":
+			 res1 = multiply(res1,res2);
+			 break;
+			 case "/":	
+					 try{res1 = divide(res1,res2);
+					 break;
+					 }
+					 catch(ArithmeticException ae)
 					 {
-						 new JOptionPane().showMessageDialog(null,"На ноль делить нельзя", "Ошибка", 3);
+						 new JOptionPane();
+						JOptionPane.showMessageDialog(null,ae,"РћС€РёР±РєР°", 3);
 						 res1=0;
 						 JT1.setText("0");
 						 break;
 					 }
-				 res1 = res1/res2;
-				 break;*/
-				 
-				 try{res1 = res1/res2;}
-				 catch(ArithmeticException ae)
-				 {
-					 new JOptionPane();
-					JOptionPane.showMessageDialog(null,ae,"Ошибка", 3);
-					 res1=0;
-					 JT1.setText("0");
-					 break;
-				 }
-				 
-				 default:
-				 res1 = 0;
-				 break;
-				 }
-				 JT1.setText(res1.toString()); 
-			}
-		});
+			 
+			 default:
+			 res1 = 0;
+			 break;
+			 }
+			// TODO Auto-generated method stub
+			
+		}
+
+	public static Integer divide(Integer res12, Integer res22) {
+		return res12/res22;
 	}
+	public	static Integer multiply(Integer res12, Integer res22) {
+		return res12*res22;
+	}
+	public	static Integer min(Integer res12, Integer res22) {
+		return res12-res22;
+	}
+	public	static Integer sum(Integer res12, Integer res22) {
+		return res12+res22;
+	}
+		
+	
 }
